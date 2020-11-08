@@ -272,3 +272,4 @@ php artisan make:rule UniqueTenant
 //
 php artisan make:controller Admin\\DashboardController
 php artisan migrate
+teste
