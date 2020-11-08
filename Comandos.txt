@@ -1,0 +1,274 @@
+Problemas       Problemas
+//
+https://computingforgeeks.com/how-to-install-php-on-ubuntu/
+https://howtoinstall.co/pt/ubuntu/xenial/apache2?action=remove
+https://www.fredericomarinho.com/removendo-php-mysql-e-apache-do-linux/
+//
+sudo service docker status
+sudo service docker stop
+sudo service docker restart
+//
+cd /home/casa/Workspace/laradock/
+docker-compose up -d nginx mysql phpmyadmin
+docker-compose down (Baixando)
+//Entrando do Contaniners
+docker container exec -it laradock_workspace_1 bash
+//Sai do Contaniners
+Ctrl + p + q
+//
+
+cd /opt/lampp/htdocs/laravel/larafood/
+//
+//
+ git status
+ git add .
+ git add --all
+ git commit -m "Resolvendo bug da img";
+
+ git push origin master (Enviar do branch local para ao remoto)
+ git push origin master --force (Força o envio do branch local para ao remoto)
+
+ git remote update #vai atualizar os branches locais com as copias do repositório online
+ git reset upstream/master
+ git pull -r upstream master
+
+ git log
+
+ git branch
+ git branch -a (Diz qual branch estou)
+ git branch feature-api    (cria a branch feature-api)
+
+ git checkout feature-api  (nós move para a branch feature-api)
+ git checkout master
+
+ git merge feature-api     (traz as alterações da branch feature-api)
+ git merge upgrade-to-7x    (traz as alterações da branch feature-api)
+ git merge master
+
+ git branch -D feature-api (Apagar um branch local)
+ git push origin --delete feature-api (Apagar um branch remoto)
+ git branch -dr origin/feature-api
+//
+//
+//Xampp     //Xampp     //Xampp
+https://www.edivaldobrito.com.br/como-instalar-o-xampp-no-linux/
+sudo /opt/lampp/lampp start
+sudo /opt/lampp/manager-linux-x64.run
+//
+//
+git clone https://github.com/especializati/larafood.git
+https://github.com/especializati/larafood
+//Na pasta laradock
+docker-compose up -d nginx
+docker-compose up -d nginx mysql phpmyadmin
+docker-compose up -d nginx mysql phpmyadmin redis workspace
+docker-compose restart
+docker-compose down
+
+//
+//
+composer create-project --prefer-dist laravel/laravel larafood "7.*"
+sudo chmod -R 755 storage bootstrap/cache
+
+sudo chown -R casa:www-data larafood
+//
+//
+https://github.com/jeroennoten/Laravel-AdminLTE#2-installation
+composer require jeroennoten/laravel-adminlte
+php artisan adminlte:install
+php artisan adminlte:install --only=auth_views
+
+https://fontawesome.com/icons
+
+//
+//Models            //Models        //Models
+php artisan make:model Models\\Plan -m
+//
+//
+php artisan migrate
+php artisan migrate:refresh
+php artisan migrate:refresh --seed
+//
+//
+php artisan make:controller Admin\\PlanController
+//
+php artisan make:observer PlanObserver --model=Models\\Plan
+//
+php artisan make:model Models\\DetailPlan -m
+//
+php artisan make:controller Admin\\DetailPlanController --resource
+//
+php artisan make:request StoreUpdateDetailPlan
+//
+php artisan make:model Models\\Profile -m
+php artisan make:controller Admin\\ACL\\ProfileController --resource
+php artisan make:request StoreUpdateProfile
+//
+php artisan make:controller Admin\\ACL\\PlanProfileController --resource
+php artisan make:migration create_plan_profile_table
+//
+php artisan make:model Models\\Permission -m
+php artisan make:controller Admin\\ACL\\PermissionController --resource
+php artisan make:request StoreUpdatePermission
+//
+php artisan make:migration create_permission_profile_table
+php artisan make:controller Admin\\ACL\\PermissionProfileController --resource
+//
+//
+composer require laravel/ui "^1.0" --dev
+php artisan ui vue --auth
+npm install
+npm run dev
+//
+//
+php artisan make:seeder UsersTableSeeder
+php artisan db:seed
+//
+//
+php artisan make:controller Site\\SiteController
+//
+//
+https://github.com/barryvdh/laravel-debugbar
+composer require barryvdh/laravel-debugbar --dev
+//
+//Essa model se refere a quem comprar uns dos planos ou a empresa que contratar
+php artisan make:model Models\\Tenant -m
+//
+// No caso de alterar algum arquivos
+composer install
+composer dumpautoload
+composer update
+ll public
+php artisan key:generate
+php artisan storage:link (Rodar no laradock_workspace_1 e não o VsCode)
+//
+//
+php artisan make:seeder TenantsTableSeeder
+php artisan make:seeder PlansTableSeeder
+php artisan db:seed
+
+
+https://www.schoolofnet.com/forum/topico/javascript-no-blade-5700
+https://www.youtube.com/watch?v=ohDAdZqEyjk
+
+//
+//
+https://proandre21.imgur.com/all/?third_party=1
+//
+php artisan make:observer TenantObserver --model=Model\\Tenant
+//
+https://github.com/laravel/laravel
+//
+//
+php artisan make:controller Admin\\UserController
+//
+//
+php artisan make:model Models\\Category -m
+php artisan make:controller Admin\\CategoryController --resource
+php artisan make:request StoreUpdateCategory
+php artisan make:observer CategoryObserver
+php artisan migrate
+//
+//
+php artisan make:model Models\\Product -m
+php artisan make:controller Admin\\ProductController
+php artisan make:request StoreUpdateProduct
+php artisan make:observer ProductObserver
+//
+php artisan make:controller Admin\\CategoryProductController --resource
+//
+php artisan make:model Models\\Table -m
+php artisan make:controller Admin\\TableController
+php artisan make:request StoreUpdateTable
+php artisan make:observer TableObserver
+//
+php artisan make:model Models\\Role -m
+php artisan make:controller Admin\\ACL\\RoleController
+php artisan make:request StoreUpdateRole
+//
+php artisan make:controller Admin\\ACL\\PermissionRoleController
+//
+php artisan make:controller Admin\\ACL\\RoleUserController
+//
+//
+php artisan make:event TenantCreated
+php artisan make:listener AddRoleTenant
+//
+//
+//APi API
+Rota = Controller = Service = RepositoryInterface = Repository = Contracts
+O Controller chama o Service
+O "Service" chama a "RepositoryInterface"
+O RepositoryInterface chama o Repository que na verdade realiza as operações
+//APi API
+//
+php artisan make:controller Api\\TenantApiController
+php artisan make:resource TenantResource
+php artisan make:provider RepositoryServiceProvider
+//
+//
+php artisan make:controller Api\\CategoryApiController
+php artisan make:resource CategoryResource
+php artisan make:request Api\\TenantFormRequest
+//
+//
+php artisan make:controller Api\\TableApiController
+php artisan make:resource TableResource
+//
+php artisan make:controller Api\\ProductApiController
+php artisan make:resource ProductResource
+//
+//
+Instalação do Telescope
+composer require laravel/telescope
+php artisan telescope:install
+php artisan migrate
+http://larafood/telescope/requests
+//
+//
+Instação Laravel Sanctum
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan migrate
+//
+//Clientes
+php artisan make:model Models\\Client -m
+php artisan make:controller Api\\Auth\\RegisterController
+php artisan make:request StoreClient
+php artisan make:resource ClientResource
+php artisan make:controller Api\\Auth\\AuthClientController
+//
+//
+//Pedidos   //Pedidos   //Pedidos
+php artisan make:controller Api\\OrderApiController
+php artisan make:model Models\\Order -m
+php artisan make:resource OrderResource
+php artisan make:request Api\\StoreOrder
+//
+php artisan make:model Models\\Evaluation -m
+php artisan make:controller Api\\EvaluationApiController
+php artisan make:resource EvaluationResource
+//
+//Testes
+php artisan make:factory PlanFactory --model=Model\\Plan
+php artisan make:factory TenantFactory --model=Model\\Tenant
+E assim por diante......
+php artisan make:test TenantTest
+phpunit (para rodar os Testes)
+ vendor/bin/phpunit (para rodar os Testes)
+ vendor/bin/phpunit tests/Feature/TenantTest.php
+
+PATH="./vendor/bin:$PATH"
+//
+//
+//QR Code       //QR Code
+https://github.com/SimpleSoftwareIO/simple-qrcode
+composer require simplesoftwareio/simple-qrcode
+//
+//
+//Validações por Tenant
+php artisan make:rule UniqueTenant
+//
+//
+php artisan make:controller Admin\\DashboardController
+php artisan migrate
