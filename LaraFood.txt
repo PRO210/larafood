@@ -126,6 +126,7 @@ composer update
 ll public
 php artisan key:generate
 php artisan storage:link
+php artisan storage:unlink
 //
 //
 php artisan make:seeder TenantsTableSeeder
